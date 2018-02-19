@@ -181,6 +181,40 @@ public class Window implements ActionListener{
 				// TODO Auto-generated method stub
 			}
 		});
+		
+		canvas.addMouseListener(new MouseAdapter() {
+			//Press and release coordinates of the mouse
+			int pressX;
+			int pressY;
+			int releaseX;
+			int releaseY;
+			boolean released;
+			
+			public void paint(Graphics g) {
+				if (released==true) {
+				System.out.println("in paint");
+				g.drawLine(pressX, pressY, releaseX, releaseY);
+				canvas.update(g);
+				}
+			}
+			
+			public void mousePressed(MouseEvent e) {
+				// save press X and Y values
+				System.out.println("in press");
+				pressX = e.getX();
+				pressY = e.getY();
+			}
+			
+			public void mouseReleased(MouseEvent e) {
+				// save release X and Y values
+				System.out.println("in release");
+				releaseX = e.getX();
+				releaseY = e.getY();
+				// set boolean to true so that it may draw a line (and not draw anything prior to this)
+				released = true;
+				repaint();
+				//canvas.update(g); <-- not sure where this line should be
+				
 		canvas.setBackground(Color.WHITE);
 		
 		frame.getContentPane().add(canvas, BorderLayout.CENTER);
