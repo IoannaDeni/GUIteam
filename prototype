@@ -28,6 +28,7 @@ import javax.swing.UIManager;
  * the necessary buttons with their action listeners
  * 
  * @author Ioanna Deni
+ * @author Emilyann Nault
  * @version 2/15/2018
  *
  */
