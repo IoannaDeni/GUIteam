@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -39,7 +38,6 @@ public class Window extends implements ActionListener{
 	
 	private JFrame frame; //Frame for the application
 	private final JPanel panel = new JPanel(); //Panel for the window
-	private final Canvas canvas = new Canvas(); //Canvas to draw on
 	private final JLabel lblColorPalet = new JLabel("Canvas 1");
 	//Where buttons and drop-down menus will be added
 	private final JMenuBar menuBar = new JMenuBar(); 
@@ -185,48 +183,6 @@ public class Window extends implements ActionListener{
 		toolBar.add(playButton);
 		playButton.addActionListener(this);
 		playButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaPlayDisabled.png")));
-		
-		saveButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-			}
-		});
-		
-		canvas.addMouseListener(new MouseAdapter() {
-			//Press and release coordinates of the mouse
-			int pressX;
-			int pressY;
-			int releaseX;
-			int releaseY;
-			boolean released;
-			
-			public void paint(Graphics g) {
-				if (released==true) {
-				System.out.println("in paint");
-				g.drawLine(pressX, pressY, releaseX, releaseY);
-				canvas.update(g);
-				}
-			}
-			
-			public void mousePressed(MouseEvent e) {
-				// save press X and Y values
-				System.out.println("in press");
-				pressX = e.getX();
-				pressY = e.getY();
-			}
-			
-			public void mouseReleased(MouseEvent e) {
-				// save release X and Y values
-				System.out.println("in release");
-				releaseX = e.getX();
-				releaseY = e.getY();
-				// set boolean to true so that it may draw a line (and not draw anything prior to this)
-				released = true;
-				repaint();
-				//canvas.update(g); <-- not sure where this line should be
-				
-		canvas.setBackground(Color.WHITE);
 		
 		frame.getContentPane().add(canvas, BorderLayout.CENTER);
 	
