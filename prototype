@@ -34,7 +34,7 @@ import javax.swing.UIManager;
  * @version 2/15/2018
  *
  */
-public class Window implements ActionListener{
+public class Window extends implements ActionListener{
 
 	
 	private JFrame frame; //Frame for the application
@@ -89,6 +89,17 @@ public class Window implements ActionListener{
 	//Change size of the selected item
 	private final JButton makeBigger = new JButton("");
 	private final JButton makeSmall = new JButton("");
+	private final JMenuItem mntmNewFile = new JMenuItem("New File");
+	private final JMenuItem mntmSave = new JMenuItem("Save");
+	private final JMenuItem mntmExport = new JMenuItem("Export");
+	private final JMenuItem Exit = new JMenuItem("Exit");
+	private final JMenu mnEdit = new JMenu("Edit");
+	private final JMenuItem mntmUndo = new JMenuItem("Undo");
+	private final JMenuItem mntmRedo = new JMenuItem("Redo");
+	private final JMenuItem mntmCopy = new JMenuItem("Copy");
+	private final JMenuItem mntmMouseMode = new JMenuItem("Mouse Mode");
+	private final JMenuItem mntmSystem = new JMenuItem("System");
+	private final JMenuItem mntmContactUs = new JMenuItem("Contact us");
 	
 	/**
 	 * @wbp.nonvisual location=64,179
