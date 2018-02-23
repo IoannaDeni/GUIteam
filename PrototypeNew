@@ -1,0 +1,293 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.JMenuItem;
+
+/**
+ * This class is the prototype for the window.  Currently it contains
+ * the necessary buttons with their action listeners
+ * 
+ * @author Ioanna Deni
+ * @author Emilyann Nault
+ * @author Sneha Kanaujia
+ * @author Jaemarie Solyst
+ * @version 2/15/2018
+ *
+ */
+
+public class Window extends JComponent implements ActionListener{
+	
+	private DrawLineAndPoint drawingLine = new DrawLineAndPoint();
+	private JFrame frame; //Frame for the application
+	private final JPanel panel = new JPanel(); //Panel for the window
+	private final JLabel lblColorPalet = new JLabel("Canvas 1");
+	//Where buttons and drop-down menus will be added
+	private final JMenuBar menuBar = new JMenuBar(); 
+	//File drop-down in the menu bar at the top of the window
+	private final JMenu mnMenu = new JMenu("File"); 
+	//Buttons under the file drop-down
+	private final JButton saveButton = new JButton("Save");
+	//Settings drop-down in the menu bar at the top of the window
+	private final JMenu mnSettings = new JMenu("Settings");
+	//Help drop-down in the menu bar at the top of the window
+	private final JMenu mnHelp = new JMenu("Help");
+	//Tool bar menu on the lefthand side of the window
+	private final JToolBar toolBar = new JToolBar();
+	private final JButton cutButton = new JButton("");
+	private final JButton copyButton = new JButton("");
+	private final JButton pasteButton = new JButton("");
+	private final JButton redoButton = new JButton("");
+	private final JButton undoButton = new JButton("");
+	private final JButton thicknessButton = new JButton("");
+	private final JButton wordsButton = new JButton("");
+	private final JButton newFile = new JButton("");
+	//Secondary tool bar for the lefthand side of the window
+	private final JToolBar toolBar_1 = new JToolBar();
+	private final JButton revTriangle = new JButton("");
+	private final JButton triangle = new JButton("");
+	private final JButton squares = new JButton("");
+	//play button for animations
+	private final JButton playButton = new JButton("");
+	//Creates a circle
+	private final JButton circle = new JButton("");
+	private final JButton lineRight = new JButton("");
+	private final JButton lineUp = new JButton("");
+	private final JButton lineLeft = new JButton("");
+	//Change size of the selected item
+	private final JButton makeBigger = new JButton("");
+	private final JButton makeSmall = new JButton("");
+	private final JMenuItem mntmNewFile = new JMenuItem("New File");
+	private final JMenuItem mntmSave = new JMenuItem("Save");
+	private final JMenuItem mntmExport = new JMenuItem("Export");
+	private final JMenuItem Exit = new JMenuItem("Exit");
+	private final JMenu mnEdit = new JMenu("Edit");
+	private final JMenuItem mntmUndo = new JMenuItem("Undo");
+	private final JMenuItem mntmRedo = new JMenuItem("Redo");
+	private final JMenuItem mntmCopy = new JMenuItem("Copy");
+	private final JMenuItem mntmMouseMode = new JMenuItem("Mouse Mode");
+	private final JMenuItem mntmSystem = new JMenuItem("System");
+	private final JMenuItem mntmContactUs = new JMenuItem("Contact us");
+	
+	/**
+	 * @wbp.nonvisual location=64,179
+	 */
+	/**
+	 * Launch the application.
+	 *
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					//Creates a new window and makes it visible
+					Window window = new Window();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Window() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		//Creates the frame for the application and sets its size and 
+		//closing procedure
+		frame = new JFrame();
+		frame.setBounds(100, 100, 873, 530);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//Creates a grid for the top of the window for the drop-down
+		//boxes and other buttons can be added
+		frame.getContentPane().add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		//Adds the icons and action listeners to the buttons
+		//and adds the buttons to the tool bar at the top of the window
+		panel.add(toolBar);
+		newFile.addActionListener(this);
+		newFile.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/file.gif")));
+		toolBar.add(newFile);
+		toolBar.add(saveButton);
+		saveButton.addActionListener(this);
+		saveButton.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
+		cutButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/scene/web/skin/Cut_16x16_JFX.png")));
+		cutButton.addActionListener(this);
+		toolBar.add(cutButton);
+		copyButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/scene/web/skin/Copy_16x16_JFX.png")));
+		copyButton.addActionListener(this);
+		toolBar.add(copyButton);
+		pasteButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/scene/web/skin/Paste_16x16_JFX.png")));
+		pasteButton.addActionListener(this);
+		toolBar.add(pasteButton);
+		redoButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/scene/web/skin/Redo_16x16_JFX.png")));
+		toolBar.add(redoButton);
+		redoButton.addActionListener(this);
+		undoButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/scene/web/skin/Undo_16x16_JFX.png")));
+		undoButton.addActionListener(this);
+		toolBar.add(undoButton);
+		thicknessButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/scene/web/skin/FontBackgroundColor_16x16_JFX.png")));
+		thicknessButton.addActionListener(this);
+		toolBar.add(thicknessButton);
+		wordsButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
+		wordsButton.addActionListener(this);
+		toolBar.add(wordsButton);
+		toolBar.add(playButton);
+		playButton.addActionListener(this);
+		playButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaPlayDisabled.png")));
+		saveButton.addActionListener(this);
+		//Sets up the color pallette label
+		lblColorPalet.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		lblColorPalet.setForeground(UIManager.getColor("EditorPane.selectionBackground"));
+		lblColorPalet.setBackground(UIManager.getColor("EditorPane.selectionBackground"));
+		//Adds color pallet to the bottom of the window and sets it's orientation
+		frame.getContentPane().add(lblColorPalet, BorderLayout.SOUTH);
+		toolBar_1.setOrientation(SwingConstants.VERTICAL);
+		frame.getContentPane().add(drawingLine, BorderLayout.CENTER);
+		//Adds the second tool bar to the left of the window and sets the icons of those buttons
+		frame.getContentPane().add(toolBar_1, BorderLayout.WEST);
+		triangle.addActionListener(this);
+		triangle.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/sortUp.png")));
+		toolBar_1.add(triangle);
+		revTriangle.addActionListener(this);
+		revTriangle.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/sortDown.png")));
+		toolBar_1.add(revTriangle);
+		squares.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/scene/control/skin/caspian/pattern-transparent.png")));
+		squares.addActionListener(this);
+		toolBar_1.add(squares);
+		circle.setIcon(new ImageIcon(Window.class.getResource("/com/sun/java/swing/plaf/windows/icons/TreeLeaf.gif")));
+		circle.addActionListener(this);
+		toolBar_1.add(circle);
+		lineRight.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed-rtl.gif")));
+		lineRight.addActionListener(this);
+		toolBar_1.add(lineRight);
+		lineUp.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/expanded.gif")));
+		lineUp.addActionListener(this);
+		toolBar_1.add(lineUp);
+		lineLeft.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/collapsed.gif")));
+		lineLeft.addActionListener(this);
+		toolBar_1.add(lineLeft);
+		makeBigger.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/maximize.gif")));
+		makeBigger.addActionListener(this);
+		toolBar_1.add(makeBigger);
+		makeSmall.setIcon(new ImageIcon(Window.class.getResource("/javax/swing/plaf/metal/icons/ocean/iconify-pressed.gif")));
+		makeSmall.addActionListener(this);
+		toolBar_1.add(makeSmall);
+		//Adds the menu bar and adds the necessary buttons
+		frame.setJMenuBar(menuBar);
+		mnMenu.setForeground(SystemColor.menuText);
+		mnMenu.setBackground(SystemColor.desktop);
+		menuBar.add(mnMenu);
+		
+		mnMenu.add(mntmNewFile);
+		
+		mnMenu.add(mntmSave);
+		
+		mnMenu.add(mntmExport);
+		
+		mnMenu.add(Exit);
+		
+		menuBar.add(mnEdit);
+		
+		mnEdit.add(mntmUndo);
+		
+		mnEdit.add(mntmRedo);
+		
+		mnEdit.add(mntmCopy);
+		mnSettings.setForeground(SystemColor.menuText);
+		menuBar.add(mnSettings);
+		
+		mnSettings.add(mntmMouseMode);
+		
+		mnSettings.add(mntmSystem);
+		mnHelp.setForeground(SystemColor.menuText);
+		menuBar.add(mnHelp);
+		
+		mnHelp.add(mntmContactUs);
+	}
+
+	/**
+	 * Defines the pop up triggers
+	 * @param component
+	 * @param popup
+	 */
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {				
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		//Finds the source of the ActionEvent
+		Object source = event.getSource();
+		System.out.println(source + " was clicked.");
+		//If the save button was clicked save the file
+		if(source == saveButton){
+		}
+		//If the cut button was clicked cut what the user highlights
+		else if(source == cutButton){
+		}
+		//If the copy button was clicked copy what the user highlights
+		else if(source == copyButton){
+		}
+		//If the paste button was clicked paste what the user copied/cut
+		else if(source == pasteButton){
+		}
+		//If the redo button was clicked redo the changes the user undid
+		else if(source == redoButton){
+		}
+		//If the undo button was clicked undo what the user just did
+		else if(source == undoButton){
+		}
+		//If the thickness button was clicked highlight what the user highlights
+		else if(source == thicknessButton){
+		}
+		//If the words/bold button was clicked bold the words the user highlights
+		else if(source == wordsButton){
+		}
+		//If the play button was clicked play the animation the user created
+		else if(source == playButton){
+		}
+		//Add left side buttons ex.triangle button and onward...etc...(will add more soon)
+	}
+}
