@@ -184,7 +184,7 @@ public class Window extends implements ActionListener{
 		playButton.addActionListener(this);
 		playButton.setIcon(new ImageIcon(Window.class.getResource("/com/sun/javafx/webkit/prism/resources/mediaPlayDisabled.png")));
 		
-		frame.getContentPane().add(canvas, BorderLayout.CENTER);
+		frame.getContentPane().add(drawingLine, BorderLayout.CENTER);
 	
 		//Sets up the color pallette label
 		lblColorPalet.setFont(new Font("Tahoma", Font.ITALIC, 12));
