@@ -33,7 +33,7 @@ import javax.swing.UIManager;
  * @version 2/15/2018
  *
  */
-public class Window extends implements ActionListener{
+public class Window extends JComponent implements ActionListener{
 
 	
 	private JFrame frame; //Frame for the application
